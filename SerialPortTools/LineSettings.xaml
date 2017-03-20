@@ -1,0 +1,26 @@
+﻿<Window x:Class="SerialPortTools.LineSettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SerialPortTools"
+        mc:Ignorable="d"
+        Title="换行设置" Height="150" Width="300" Closed="LineSettingsWindow_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="换行符类型">
+            <StackPanel Orientation="Vertical">
+                <RadioButton Name="rbCRLF" Content="回车换行(\r\n)" Margin="5" Checked="NewLineTypeRadioButton_Checked" IsChecked="True"/>
+                <RadioButton Name="rbCR" Content="回车(\r)" Margin="5" Checked="NewLineTypeRadioButton_Checked"/>
+                <RadioButton Name="rbLF"  Content="换行(\n)" Margin="5" Checked="NewLineTypeRadioButton_Checked"/>
+            </StackPanel>
+                        
+        </GroupBox>
+    </Grid>
+</Window>
