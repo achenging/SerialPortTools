@@ -123,8 +123,8 @@
                 <Button Content="复制接收数据" Margin="5,2" Background="White" Padding="5" Click="btnCopyReceivedData"/>
                 <Button Content="清空接收区" Grid.Column="1" Margin="5,2" Background="White" Padding="5" Click="btnClearReceivedData"/>
                 <Button Content="暂停显示" Grid.Column="2" Margin="5,2" Background="White" Padding="5" Click="btnStopReceiveData"/>
-                <Button Content="保存到文件" Grid.Column="3" Margin="5,2" Background="White" Padding="5" Click="btnSaveReceivedDataToFile"/>
-                <Button Content=">>>"  Grid.Column="4" Margin="5,2" Background="White" Padding="5" Click="btnExpandClick"/>
+                <Button Content="保存到文件" Grid.Column="3" Margin="5,2" Background="White" Padding="5" Click="BtnSaveReceivedDataToFile"/>
+                <Button Content=">>>"  Grid.Column="4" Margin="5,2" Background="White" Padding="5" Click="BtnExpandClick"/>
             </Grid>
 
 
@@ -143,10 +143,10 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Button Content="复制发送数据" Margin="5,2" Background="White" Padding="5" Click="btnCopySendData"/>
+                <Button Content="复制发送数据" Margin="5,2" Background="White" Padding="5" Click="BtnCopySendData"/>
                 <Button Content="清空发送区" Grid.Column="1" Margin="5,2" Background="White" Padding="5" Click="btnClearSendData"/>
-                <Button Content="清空计数器" Grid.Column="2" Margin="5,2" Background="White" Padding="5" Click="btnClearCalcultor"/>
-                <Button Content="从文件载入" Grid.Column="3" Margin="5,2" Background="White" Padding="5" Click="btnLoadDataFromFile"/>
+                <Button Content="清空计数器" Grid.Column="2" Margin="5,2" Background="White" Padding="5" Click="BtnClearCalcultor"/>
+                <Button Content="从文件载入" Grid.Column="3" Margin="5,2" Background="White" Padding="5" Click="BtnLoadDataFromFile"/>
                 <Button Content="发送" Grid.Column="4" Margin="5,2" Background="White" Padding="5" Click="btnSendData_Click"/>
 
 

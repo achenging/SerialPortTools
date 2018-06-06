@@ -131,7 +131,6 @@ namespace SerialPortTools
                 return;
             }
             int len = _serialPort.Read(buffer, 0, 2048);
-            var readText = _serialPort.Encoding.GetString(buffer, 0, len);
 
 
 
@@ -139,10 +138,12 @@ namespace SerialPortTools
             {
                 if (rbHexReceived.IsChecked == true)
                 {
-                    tbReceivedData.Text += ConvertToHex(readText, GetEncoding());
+                    var readText = ToByteString(buffer, len);
+                    tbReceivedData.Text += readText;
                 }
                 else
                 {
+                    var readText = _serialPort.Encoding.GetString(buffer, 0, len);
                     tbReceivedData.Text += readText;
                 }
 
@@ -328,7 +329,7 @@ namespace SerialPortTools
             }
         }
 
-        private void btnSaveReceivedDataToFile(object sender, RoutedEventArgs e)
+        private void BtnSaveReceivedDataToFile(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.OverwritePrompt = true;
@@ -353,7 +354,7 @@ namespace SerialPortTools
         #endregion
 
         #region 发送区域操作
-        private void btnCopySendData(object sender, RoutedEventArgs e)
+        private void BtnCopySendData(object sender, RoutedEventArgs e)
         {
             var text = tbSendData.Text;
             if (!string.IsNullOrEmpty(text))
@@ -367,14 +368,14 @@ namespace SerialPortTools
             tbSendData.Text = string.Empty;
         }
 
-        private void btnClearCalcultor(object sender, RoutedEventArgs e)
+        private void BtnClearCalcultor(object sender, RoutedEventArgs e)
         {
             _readCnt = 0;
             _writeCnt = 0;
             UpdateRxDTxD();
         }
 
-        private void btnLoadDataFromFile(object sender, RoutedEventArgs e)
+        private void BtnLoadDataFromFile(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = ".txt";
@@ -465,11 +466,28 @@ namespace SerialPortTools
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-            var sb = new StringBuilder();
             var byteData = encoding.GetBytes(text);
-            foreach (var item in byteData)
+            return ToByteString(byteData);
+        }
+
+        private string ToByteString(byte[] data)
+        {
+            var sb = new StringBuilder();
+            foreach (var item in data)
             {
                 var hex = Convert.ToString(item, 16);
+                sb.Append(hex.Length == 1 ? "0" + hex : hex);
+                sb.Append(' ');
+            }
+            return sb.ToString();
+        }
+
+        private string ToByteString(byte[] data, int len)
+        {
+            var sb = new StringBuilder();
+            for (var i = 0; i < len; i++)
+            {
+                var hex = Convert.ToString(data[i], 16);
                 sb.Append(hex.Length == 1 ? "0" + hex : hex);
                 sb.Append(' ');
             }
@@ -526,7 +544,7 @@ namespace SerialPortTools
                         checkBox.IsChecked = true;
                         return;
                     }
-                    
+
                 }
             }
         }
@@ -559,7 +577,7 @@ namespace SerialPortTools
         }
 
 
-        private void btnExpandClick(object sender, RoutedEventArgs e)
+        private void BtnExpandClick(object sender, RoutedEventArgs e)
         {
             var expandButton = sender as Button;
             if (">>>".Equals(expandButton.Content))
